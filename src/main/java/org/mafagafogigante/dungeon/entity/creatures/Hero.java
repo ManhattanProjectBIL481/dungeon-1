@@ -738,7 +738,9 @@ public class Hero extends Creature {
     string.append(".\n");
     string.append("You are ");
     string.append(getHealth().getHealthState().toString().toLowerCase(Locale.ENGLISH));
-    string.append(".\n");
+    string.append("(");
+    string.append(getHealth().getCurrent() + "");
+    string.append("HP).\n");
     string.append("Your base attack is ");
     string.append(String.valueOf(getAttack()));
     string.append(".\n");
