@@ -39,6 +39,9 @@
         ["CHERRY", 0.8],
         ["WATERMELON", 0.2],
         ["TOME_OF_PERCEIVE", 0.1],
+        ["MYSTERIOUS_SWORD", 0.1],
+        ["MYSTERIOUS_AXE", 0.01],
+        ["MYSTERIOUS_SPEAR", 0.01],
         ["TOME_OF_REPAIR", 0.05]
       ],
       "visibility": "70%",

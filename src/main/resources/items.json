@@ -956,6 +956,71 @@
       "integrityDecrementOnHit": 1
     },
     {
+      "id": "MYSTERIOUS_SWORD",
+      "type": "Weapon",
+      "name": {
+        "singular": "Mysterious Sword"
+      },
+      "rarity": "POOR",
+      "tags": [
+        "WEAPON",
+        "REPAIRABLE"
+      ],
+      "integrity": {
+        "current": 60,
+        "maximum": 60
+      },
+      "weight": 2.0,
+      "visibility": "90.00%",
+      "damage": 25,
+      "hitRate": "100.00%",
+      "integrityDecrementOnHit": 1
+    },
+    {
+      "id": "MYSTERIOUS_SPEAR",
+      "type": "Weapon",
+      "name": {
+        "singular": "Mysterious Spear"
+      },
+      "rarity": "LEGENDARY",
+      "tags": [
+        "WEAPON",
+        "REPAIRABLE"
+      ],
+      "integrity": {
+        "current": 60,
+        "maximum": 60
+      },
+      "weight": 3.0,
+      "visibility": "90.00%",
+      "damage": 30,
+      "hitRate": "100.00%",
+      "integrityDecrementOnHit": 1
+    },
+    {
+      "id": "MYSTERIOUS_AXE",
+      "type": "Weapon",
+      "name": {
+        "singular": "Mysterious Axe"
+      },
+      "rarity": "UNIQUE",
+      "tags": [
+        "WEAPON",
+        "REPAIRABLE"
+      ],
+      "unique": true,
+      "integrity": {
+        "current": 60,
+        "maximum": 60
+      },
+      "weight": 3.5,
+      "visibility": "90.00%",
+      "luminosity": "25.00%",
+      "damage": 35,
+      "hitRate": "100.00%",
+      "integrityDecrementOnHit": 1
+    },
+    {
       "id": "SPEAR",
       "type": "Weapon",
       "name": {
