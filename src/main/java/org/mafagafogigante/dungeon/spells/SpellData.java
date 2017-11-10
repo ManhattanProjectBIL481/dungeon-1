@@ -238,5 +238,5 @@ public final class SpellData {
   private static void putSpell(Spell spell) {
     spellMap.put(spell.getId(), spell);
   }
-  //items.json dosyasi ile spell dataya spell verileri eklenecek oyun basinda kullanilabilmesi icin diger classlara da bakilacak.
+  //items.json dosyasi ile spell dataya spell verileri eklenecek
 }
