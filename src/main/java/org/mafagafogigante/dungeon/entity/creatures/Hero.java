@@ -80,6 +80,7 @@ public class Hero extends Creature {
   private final AchievementTracker achievementTracker;
   private final Statistics statistics;
   private final Date dateOfBirth;
+  private boolean hasWeapon = false;
 
   Hero(CreaturePreset preset, Statistics statistics, Date dateOfBirth) {
     super(preset);
@@ -358,6 +359,9 @@ public class Hero extends Creature {
     if (getInventory().simulateItemAddition(item) == SimulationResult.SUCCESSFUL) {
       getInventory().addItem(item);
       Writer.write(String.format("Added %s to the inventory.", item.getQualifiedName()));
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+        hasWeapon = true;
+      }
     } else {
       throw new IllegalStateException("simulateItemAddition did not return SUCCESSFUL.");
     }
@@ -759,9 +763,11 @@ public class Hero extends Creature {
   }
 
   private int getTotalDamage() {
+    if (hasWeapon) {
+      return getAttack() + getWeapon().getWeaponComponent().getDamage() + 4;
+    }
     return getAttack() + getWeapon().getWeaponComponent().getDamage();
   }
-
   /**
    * Prints the Hero's age.
    */
