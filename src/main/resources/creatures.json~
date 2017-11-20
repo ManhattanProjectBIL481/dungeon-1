@@ -20,32 +20,6 @@
       "attack": 4,
       "attackAlgorithmID": "SIMPLE"
     },
-	{
-      "id": "CHEST",
-      "type": "Common",
-      "name": {
-        "singular": "Chest"
-      },
-      
-      "drops": [
-        ["MAGIC_MUSHROOM", 1.0],
-        ["BANANA", 0.4],
-        ["CHERRY", 0.8],
-        ["CHERRY", 0.8],
-        ["WATERMELON", 0.2],
-        ["TOME_OF_PERCEIVE", 0.1],
-        ["MYSTERIOUS_SWORD", 1.0],
-        ["MYSTERIOUS_AXE", 1.0],
-        ["MYSTERIOUS_SPEAR", 1.0],
-        ["TOME_OF_REPAIR", 0.05]
-      ],
-      "visibility": "70%",
-      "weight": 80.0,
-      "health": 1,
-      "attack": 0,
-      "attackAlgorithmID": "SIMPLE"
-      
-    },
     {
       "id": "MERCHANT",
       "type": "Common",

@@ -108,44 +108,6 @@ public final class Engine {
    * @param hero the attacker
    * @param foe the defender
    */
-  public static void openChest(Hero hero, Creature foe) {
-    if (foe.getId().equals(new Id("CHEST"))) {
-      Writer.write(new DungeonString("You opened the chest."));
-      while (hero.getHealth().isAlive() && foe.getHealth().isAlive()) {
-        hero.hit(foe);
-        Engine.rollDateAndRefresh(BATTLE_TURN_DURATION);
-        // No contract specifies that calling hit on the Hero will not kill it, so check both creatures again.
-        // Additionally, rolling the date forward may kill the hero in the future.
-        if (hero.getHealth().isAlive() && foe.getHealth().isAlive()) {
-          foe.hit(hero);
-          Engine.rollDateAndRefresh(BATTLE_TURN_DURATION);
-        }
-      }
-      Creature survivor = hero.getHealth().isAlive() ? hero : foe;
-      Creature defeated = (survivor == hero) ? foe : hero;
-      // Imagine if a third factor (such as hunger) could kill one of the creatures.
-      // I think it still makes sense to say that the survivor managed to kill the defeated, but that's just me.
-      writeDrops(defeated);
-      if (hero == survivor) {
-        PartOfDay partOfDay = PartOfDay.getCorrespondingConstant(Game.getGameState().getWorld().getWorldDate());
-        Game.getGameState().getStatistics().getBattleStatistics().addBattle(foe, defeated.getCauseOfDeath(), partOfDay);
-        Game.getGameState().getStatistics().getExplorationStatistics().addKill(hero.getLocation().getPoint());
-        long heroTakenDamage = hero.getBattleLog().getAndResetTaken();
-        long heroInflictedDamage = hero.getBattleLog().getAndResetInflicted();
-        Game.getGameState().getStatistics().getHeroStatistics().incrementDamageTaken(heroTakenDamage);
-        Game.getGameState().getStatistics().getHeroStatistics().incrementDamageInflicted(heroInflictedDamage);
-      }
-    } else {
-      Writer.write(new DungeonString("You cannot open this creature."));
-    }
-  }
-
-  /**
-   * Simulates a battle between the hero and a creature.
-   *
-   * @param hero the attacker
-   * @param foe the defender
-   */
   public static void battle(Hero hero, Creature foe) {
     if (hero == foe) {
       Writer.write(new DungeonString("You cannot attempt suicide."));

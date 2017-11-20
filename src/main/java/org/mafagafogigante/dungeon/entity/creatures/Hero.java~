@@ -269,7 +269,7 @@ public class Hero extends Creature {
     }
   }
   /**
-   * Issues this Hero to open a chest.
+   * Issues this Hero to attack a target.
    */
   public void openChest(String[] arguments) {
     Creature target = selectTarget(arguments);

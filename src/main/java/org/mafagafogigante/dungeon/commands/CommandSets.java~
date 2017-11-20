@@ -196,12 +196,6 @@ final class CommandSets {
         Game.setGameState(Loader.newGame());
       }
     });
-    commandSet.addCommand(new Command("open", "Opens chest chosen by the player.") {
-      @Override
-      public void execute(@NotNull String[] arguments) {
-        Game.getGameState().getHero().openChest(arguments);
-      }
-    });
     commandSet.addCommand(new Command("pick", "Attempts to pick up items from the current location.") {
       @Override
       public void execute(@NotNull String[] arguments) {

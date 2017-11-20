@@ -1,32 +1,6 @@
 {
   "items": [
     {
-      "id": "MAGIC_MUSHROOM",
-      "type": "Food",
-      "name": {
-        "singular": "Magic Mushroom"
-      },
-      "rarity": "UNCOMMON",
-      "tags": [
-        "WEAPON",
-        "FOOD",
-        "DECOMPOSES",
-        "WEIGHT_PROPORTIONAL_TO_INTEGRITY"
-      ],
-      "integrity": {
-        "current": 50,
-        "maximum": 50
-      },
-      "weight": 0.01,
-      "visibility": "60.00%",
-      "decompositionPeriod": "1 day",
-      "damage": 6,
-      "hitRate": "70.00%",
-      "integrityDecrementOnHit": 4,
-      "nutrition": 8,
-      "integrityDecrementOnEat": 6
-    },
-    {
       "id": "TORCH",
       "type": "Tool",
       "name": {

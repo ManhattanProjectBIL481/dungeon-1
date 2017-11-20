@@ -612,14 +612,6 @@
         "D"
       ],
       "spawners": [
-		{
-          "id": "CHEST",
-          "population": {
-            "minimum": 1,
-            "maximum": 1
-          },
-          "delay": 1
-        },
         {
           "id": "BEAR",
           "population": {
