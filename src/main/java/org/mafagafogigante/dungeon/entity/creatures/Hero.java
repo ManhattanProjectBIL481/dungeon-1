@@ -908,7 +908,12 @@ public class Hero extends Creature {
   public void writeSpellList() {
     DungeonString string = new DungeonString();
     if (getSpellcaster().getSpellList().isEmpty()) {
-      string.append("You have not learned any spells yet.");
+      Spell spell = SpellData.getSpellMap().get(new Id("ECY"));
+      getSpellcaster().learnSpell(spell);
+      string.append("You know ");
+      string.append(Utils.enumerate(getSpellcaster().getSpellList()));
+      string.append(".");
+      //string.append("You have not learned any spells yet.");
     } else {
       string.append("You know ");
       string.append(Utils.enumerate(getSpellcaster().getSpellList()));

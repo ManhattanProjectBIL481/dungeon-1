@@ -26,6 +26,10 @@ public final class SpellData {
   private static final Map<Id, Spell> spellMap = new HashMap<>();
 
   static {
+    putSpell(new Spell("ECY", "Allah Kahretsin") {
+      public void operate(Hero hero, String[] targetMatcher) {
+      }
+    });
     putSpell(new Spell("HEAL", "Heal") {
       private static final int HEALING_VALUE = 10;
       private static final int SECONDS_TO_CAST_HEAL = 25;
