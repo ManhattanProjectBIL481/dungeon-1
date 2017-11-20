@@ -80,7 +80,11 @@ public class Hero extends Creature {
   private final AchievementTracker achievementTracker;
   private final Statistics statistics;
   private final Date dateOfBirth;
-  private boolean hasWeapon = false;
+  public boolean hasWeapon = false;
+  private boolean hasSword = false;
+  private boolean hasSpear = false;
+  private boolean hasAxe = false;
+  public int itemCounter = 0;
 
   Hero(CreaturePreset preset, Statistics statistics, Date dateOfBirth) {
     super(preset);
@@ -277,6 +281,7 @@ public class Hero extends Creature {
       Engine.openChest(this, target);
     }
   }
+
   /**
    * Attempts to select a target from the current location using the player input.
    *
@@ -292,6 +297,15 @@ public class Hero extends Creature {
     }
   }
 
+  @Override
+  int getAttack() {
+    
+    int total = super.getAttack();
+    if (hasWeaponMystery()) {
+      total += getBuffedDamage() * 4;
+    }
+    return total;
+  }
   /**
    * Attempts to find a creature in the current location comparing its name to an array of string tokens.
    *
@@ -368,7 +382,19 @@ public class Hero extends Creature {
       getInventory().addItem(item);
       Writer.write(String.format("Added %s to the inventory.", item.getQualifiedName()));
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+        hasSword = true;
         hasWeapon = true;
+        itemCounter++;
+      }
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Spear")) {
+        hasSpear = true;
+        hasWeapon = true;
+        itemCounter++;
+      }
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
+        hasAxe = true;
+        hasWeapon = true;
+        itemCounter++;
       }
     } else {
       throw new IllegalStateException("simulateItemAddition did not return SUCCESSFUL.");
@@ -770,9 +796,17 @@ public class Hero extends Creature {
     Writer.write(string);
   }
 
+  int getBuffedDamage() {
+    return itemCounter;
+  }
+
+  boolean hasWeaponMystery() {
+    return hasWeapon;
+  }
+
   private int getTotalDamage() {
-    if (hasWeapon) {
-      return getAttack() + getWeapon().getWeaponComponent().getDamage() + 4;
+    if (hasSword || hasSpear || hasAxe) {
+      return getAttack() + getWeapon().getWeaponComponent().getDamage() + getBuffedDamage() * 4;
     }
     return getAttack() + getWeapon().getWeaponComponent().getDamage();
   }
