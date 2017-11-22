@@ -29,13 +29,6 @@ final class AttackAlgorithms {
     ATTACK_ALGORITHM_MAP.get(attacker.getAttackAlgorithmId()).renderAttack(attacker, defender);
   }
 
-  public static void renderAttackChest(Creature attacker, Creature defender) {
-    if (uninitialized) {
-      initialize();
-    }
-    ATTACK_ALGORITHM_MAP.get(attacker.getAttackAlgorithmId()).renderAttackChest(attacker, defender);
-  }
-
   private static void initialize() {
     registerAttackAlgorithm(AttackAlgorithmId.BAT, new BatAttackAlgorithm());
     registerAttackAlgorithm(AttackAlgorithmId.CRITTER, new CritterAttackAlgorithm());

@@ -17,8 +17,4 @@ public class DummyAttackAlgorithm implements AttackAlgorithm {
     Writer.writeAndWait(new DungeonString(attacker.getName() + " stands still.\n", Color.YELLOW));
   }
 
-  @Override
-  public void renderAttackChest(@NotNull Creature attacker, @NotNull Creature defender) {
-
-  }
 }

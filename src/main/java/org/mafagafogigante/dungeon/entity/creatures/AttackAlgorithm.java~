@@ -1,4 +1,4 @@
-package org.mafagafogigante.dungeon.entity.creatures;
+package org.package org.mafagafogigante.dungeon.entity.creatures;
 
 import org.jetbrains.annotations.NotNull;
 

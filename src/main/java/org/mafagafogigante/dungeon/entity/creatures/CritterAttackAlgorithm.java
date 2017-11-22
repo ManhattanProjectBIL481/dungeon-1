@@ -22,4 +22,10 @@ public class CritterAttackAlgorithm implements AttackAlgorithm {
     }
   }
 
+  @Override
+  public void renderAttackChest(@NotNull Creature attacker, @NotNull Creature defender) {
+
+    
+  }
+
 }

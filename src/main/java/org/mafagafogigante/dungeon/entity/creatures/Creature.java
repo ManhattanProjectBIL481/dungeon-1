@@ -208,6 +208,15 @@ public class Creature extends Entity {
     AttackAlgorithms.renderAttack(this, target);
   }
 
+  /**
+   * open the specified target Creature.
+   *
+   * @param target the target
+   */
+  public void open(Creature target) {
+    AttackAlgorithms.renderAttackChest(this, target);
+  }
+
   boolean hasWeapon() {
     return getWeapon() != null;
   }

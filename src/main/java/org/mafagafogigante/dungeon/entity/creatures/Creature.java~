@@ -132,10 +132,6 @@ public class Creature extends Entity {
     }
     return total;
   }
-
-  int getAttacks() {
-    return getAttack();
-  }
   /**
    * Returns the fishing proficiency of this creature after taking into account all of its active conditions.
    */
