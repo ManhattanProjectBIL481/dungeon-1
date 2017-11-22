@@ -302,7 +302,7 @@ public class Hero extends Creature {
     
     int total = super.getAttack();
     if (hasWeaponMystery()) {
-      total += getBuffedDamage() * 4;
+      total += getItemCounter() * 4;
     }
     return total;
   }
@@ -421,6 +421,27 @@ public class Hero extends Creature {
   public void dropItems(String[] arguments) {
     List<Item> selectedItems = selectInventoryItems(arguments);
     for (Item item : selectedItems) {
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+        hasSword = false;
+        itemCounter--;
+        if (itemCounter == 0) {
+          hasWeapon = false;
+        }
+      }
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Spear")) {
+        hasSpear = false;
+        itemCounter--;
+        if (itemCounter == 0) {
+          hasWeapon = false;
+        }
+      }
+      if (item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
+        hasAxe = true;
+        itemCounter--;
+        if (itemCounter == 0) {
+          hasWeapon = false;
+        }
+      }
       if (item == getWeapon()) {
         unsetWeapon(); // Just unset the weapon, it does not need to be moved to the inventory before being dropped.
       }
@@ -796,7 +817,7 @@ public class Hero extends Creature {
     Writer.write(string);
   }
 
-  int getBuffedDamage() {
+  int getItemCounter() {
     return itemCounter;
   }
 
@@ -805,9 +826,6 @@ public class Hero extends Creature {
   }
 
   private int getTotalDamage() {
-    if (hasSword || hasSpear || hasAxe) {
-      return getAttack() + getWeapon().getWeaponComponent().getDamage() + getBuffedDamage() * 4;
-    }
     return getAttack() + getWeapon().getWeaponComponent().getDamage();
   }
   /**
