@@ -121,10 +121,36 @@ public class EffectFactory implements Serializable {
 
 
     public void affect(Creature creature) {
-     //Date start = creature.getLocation().getWorld().getWorldDate();
-     // final Date end = start.plus(duration.getSeconds(), DungeonTimeUnit.SECOND);
-     //creature.addCondition(new LifeStealCondition(this, end, stealing));
+      Date start = creature.getLocation().getWorld().getWorldDate();
+      final Date end = start.plus(duration.getSeconds(), DungeonTimeUnit.SECOND);
+      creature.addCondition(new LifeStealCondition(this, end, stealing));
      //creature.getHealth().incrementBy(10);
+    }
+
+    private static class LifeStealCondition extends Condition {  //ebyildirim
+      private static final long serialVersionUID = Version.MAJOR;
+      private final Date end;
+      private final Effect effect;
+      private final float stealing;
+      
+      LifeStealCondition(Effect effect, Date end, float stealing) {
+        this.effect = effect;
+        this.end = end;
+        this.stealing = stealing;
+      }
+
+      Date getExpirationDate() {
+        return end;
+      }
+ 
+      public Effect getEffect() {
+        return effect;
+      }
+  
+      String getDescription() {
+        return "+" + stealing + " to steal";
+      }
+      
     }
   }
 
@@ -158,33 +184,7 @@ public class EffectFactory implements Serializable {
       Date start = creature.getLocation().getWorld().getWorldDate();
       final Date end = start.plus(duration.getSeconds(), DungeonTimeUnit.SECOND);
       creature.addCondition(new AttackCondition(this, end, extraDamage));
-    }
-
- /*   private static class LifeStealCondition extends Condition {  //ebyildirim
-      private static final long serialVersionUID = Version.MAJOR;
-      private final Date end;
-      private final Effect effect;
-      private final float stealing;
-      
-      LifeStealCondition(Effect effect, Date end, float stealing) {
-        this.effect = effect;
-        this.end = end;
-        this.stealing = stealing;
-      }
-
-      Date getExpirationDate() {
-        return end;
-      }
- 
-      public Effect getEffect() {
-        return effect;
-      }
-  
-      String getDescription() {
-        return "+" + stealing + " to steal";
-      }
-      
-    } */
+    }   
     
     private static class AttackCondition extends Condition {
       private static final long serialVersionUID = Version.MAJOR;
