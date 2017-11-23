@@ -66,8 +66,14 @@ class SimpleAttackAlgorithm implements AttackAlgorithm {
         damage *= 2;
       }
       // Decrement the health of the defender.
+      int lifesteal = 0;
       DamageHandler.inflictDamage(attacker, defender, damage);
+      for (Condition condition : attacker.getConditions()) { // ebyildirim
+        lifesteal += condition.stealingAttack(damage);
+      }
+      attacker.getHealth().incrementBy(lifesteal);
       AttackAlgorithmWriter.writeInflictedDamage(attacker, damage, defender, isCriticalHit);
+      AttackAlgorithmWriter.writeLifeSteal(lifesteal);
       // Respect the contract: If the defender is dead, set its cause of death.
       if (defender.getHealth().isDead()) {
         if (attackerIsEquippingWorkingWeapon) {

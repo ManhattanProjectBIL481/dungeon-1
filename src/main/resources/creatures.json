@@ -152,7 +152,8 @@
         "CORPSE"
       ],
       "drops": [
-        ["RABBIT_BEEF", 1.0]
+        ["RABBIT_BEEF", 1.0],
+        ["WAMPIRE_POTION", 1.0]
       ],
       "visibility": "70%",
       "weight": 1.45,

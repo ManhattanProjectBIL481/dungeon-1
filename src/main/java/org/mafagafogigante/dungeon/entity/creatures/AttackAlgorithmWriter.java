@@ -17,6 +17,14 @@ final class AttackAlgorithmWriter {
     throw new AssertionError();
   }
 
+  static void writeLifeSteal(int lifesteal) {
+    DungeonString string = new DungeonString();
+    string.setColor(Color.BLUE);
+    string.append(" stolen damage ");
+    string.append(String.valueOf(lifesteal));
+    string.append(".\n");
+    Writer.writeAndWait(string);
+  }
   /**
    * Writes a message about the inflicted damage based on the parameters.
    *

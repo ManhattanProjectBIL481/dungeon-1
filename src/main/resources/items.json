@@ -262,6 +262,37 @@
       ],
       "integrityDecrementPerDose": 5
     },
+    {                  
+      "id": "WAMPIRE_POTION",
+      "type": "Potion",
+      "name": {
+        "singular": "Wampire Potion"
+      },
+      "rarity": "COMMON",
+      "tags": [
+        "WEAPON",
+        "DRINKABLE",
+        "WEIGHT_PROPORTIONAL_TO_INTEGRITY"
+      ],
+      "integrity": {
+        "current": 10,
+        "maximum": 10
+      },
+      "weight": 0.2,
+      "visibility": "100.00%",
+      "damage": 4,
+      "hitRate": "50.00%",
+      "integrityDecrementOnHit": 5,
+      "drinkableDoses": 1,
+      "drinkableEffects": [
+        [
+          "LIFE_STEAL",
+          0.5,
+          "1 hour"
+        ]
+      ],
+      "integrityDecrementPerDose": 5
+    },
     {
       "id": "HEALING_DRAUGHT",
       "type": "Potion",

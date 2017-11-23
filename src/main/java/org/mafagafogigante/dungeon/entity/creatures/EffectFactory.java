@@ -53,7 +53,7 @@ public class EffectFactory implements Serializable {
     private static final long serialVersionUID = Version.MAJOR;
 
     public Effect instantiate(List<String> parameters) {
-      assertParameterCount(parameters, 1);
+      assertParameterCount(parameters, 2);
       final float stealing = Float.parseFloat(parameters.get(0)); 
       final Duration duration = DungeonTimeParser.parseDuration(parameters.get(1));
       return new LifeStealEffect(duration, stealing);
@@ -124,7 +124,6 @@ public class EffectFactory implements Serializable {
       Date start = creature.getLocation().getWorld().getWorldDate();
       final Date end = start.plus(duration.getSeconds(), DungeonTimeUnit.SECOND);
       creature.addCondition(new LifeStealCondition(this, end, stealing));
-     //creature.getHealth().incrementBy(10);
     }
 
     private static class LifeStealCondition extends Condition {  //ebyildirim
@@ -149,6 +148,10 @@ public class EffectFactory implements Serializable {
   
       String getDescription() {
         return "+" + stealing + " to steal";
+      }
+
+      int stealingAttack(int damage) {
+        return (int) (damage * stealing); 
       }
       
     }
