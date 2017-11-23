@@ -47,5 +47,6 @@ abstract class Condition implements Serializable {
   Percentage modifyFishingProficiency(Percentage proficiency) {
     return proficiency;
   }
+  
 
 }

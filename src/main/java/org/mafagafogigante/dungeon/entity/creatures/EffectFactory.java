@@ -24,6 +24,7 @@ public class EffectFactory implements Serializable {
     templates.put(new Id("EXTRA_ATTACK"), new AttackEffectTemplate());
     templates.put(new Id("FISHING_PROFICIENCY"), new FishingProficiencyTemplate());
     templates.put(new Id("WELL_FED"), new WellFedEffectTemplate());
+    templates.put(new Id("LIFE_STEAL"), new LifeStealEffectTemplate()); //eb.yildirim
   }
 
   public static EffectFactory getDefaultFactory() {
@@ -46,6 +47,17 @@ public class EffectFactory implements Serializable {
       throw new IllegalArgumentException(id + " did not match any effect template");
     }
     return template.instantiate(parameters);
+  }
+  
+  private static class LifeStealEffectTemplate extends EffectTemplate {   //eb.yildirim
+    private static final long serialVersionUID = Version.MAJOR;
+
+    public Effect instantiate(List<String> parameters) {
+      assertParameterCount(parameters, 1);
+      final float stealing = Float.parseFloat(parameters.get(0)); 
+      final Duration duration = DungeonTimeParser.parseDuration(parameters.get(1));
+      return new LifeStealEffect(duration, stealing);
+    }
   }
 
   private static class HealingEffectTemplate extends EffectTemplate {
@@ -96,9 +108,30 @@ public class EffectFactory implements Serializable {
     }
   }
 
+  private static class LifeStealEffect extends Effect {  //ebyildirim
+    private static final long serialVersionUID = Version.MAJOR;
+    private final float stealing;
+    private final Duration duration;
+
+
+    LifeStealEffect(Duration duration, float stealing) {
+      this.stealing = stealing;
+      this.duration = duration;
+    }
+
+
+    public void affect(Creature creature) {
+     //Date start = creature.getLocation().getWorld().getWorldDate();
+     // final Date end = start.plus(duration.getSeconds(), DungeonTimeUnit.SECOND);
+     //creature.addCondition(new LifeStealCondition(this, end, stealing));
+     //creature.getHealth().incrementBy(10);
+    }
+  }
+
   private static class HealingEffect extends Effect {
     private static final long serialVersionUID = Version.MAJOR;
     private final int healing;
+    
 
     HealingEffect(int healing) {
       this.healing = healing;
@@ -127,6 +160,32 @@ public class EffectFactory implements Serializable {
       creature.addCondition(new AttackCondition(this, end, extraDamage));
     }
 
+ /*   private static class LifeStealCondition extends Condition {  //ebyildirim
+      private static final long serialVersionUID = Version.MAJOR;
+      private final Date end;
+      private final Effect effect;
+      private final float stealing;
+      
+      LifeStealCondition(Effect effect, Date end, float stealing) {
+        this.effect = effect;
+        this.end = end;
+        this.stealing = stealing;
+      }
+
+      Date getExpirationDate() {
+        return end;
+      }
+ 
+      public Effect getEffect() {
+        return effect;
+      }
+  
+      String getDescription() {
+        return "+" + stealing + " to steal";
+      }
+      
+    } */
+    
     private static class AttackCondition extends Condition {
       private static final long serialVersionUID = Version.MAJOR;
       private final Date end;
