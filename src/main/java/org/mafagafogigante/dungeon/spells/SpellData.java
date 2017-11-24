@@ -26,30 +26,34 @@ public final class SpellData {
   private static final Map<Id, Spell> spellMap = new HashMap<>();
 
   static {
-    putSpell(new Spell("ECY", "Frostbolt") {
-      private static final int SECONDS_TO_CAST_ECY = 25;
+    putSpell(new Spell("FROST", "Frostbolt") {
+      private static final int DAMAGE_VALUE = 10;
+      private static final int SECONDS_TO_CAST_FROST = 15;
       public void operate(Hero hero, String[] targetMatcher) {
         if (targetMatcher.length == 0) {
           Writer.write("Provide a target.");
         } else {
           Creature target = hero.findCreature(targetMatcher);
-          if (target != null) {
-            Engine.rollDateAndRefresh(SECONDS_TO_CAST_ECY);
-            DungeonString string = new DungeonString();
+          DungeonString string = new DungeonString();
+          if (target != null && !(target.isFrozen())) {
+            Engine.rollDateAndRefresh(SECONDS_TO_CAST_FROST);
             string.append("You casted ");
             string.append(getName().getSingular());
             string.append(" on ");
             string.append(target.getName().getSingular());
             string.append(".");
-            target.getHealth().decrementBy(target.getHealth().getCurrent());
+            target.changeFrozen();
+            target.getHealth().decrementBy(DAMAGE_VALUE);
             if (target.getHealth().isDead()) {
               string.append("\nAnd it died.");
-              target.setCauseOfDeath(new CauseOfDeath(TypeOfCauseOfDeath.SPELL, new Id("ECY")));
+              target.setCauseOfDeath(new CauseOfDeath(TypeOfCauseOfDeath.SPELL, new Id("FROST")));
             } else {
-              string.append("\nBut it is still alive.");
+              string.append("\nIt has now " + target.getHealth().getCurrent() + " health.");
             }
-            Writer.write(string);
+          } else {
+            string.append("Target has already frozen. Frostbolt cannot use again frozen targets."); 
           }
+          Writer.write(string);
         }
       }
     });
@@ -265,5 +269,4 @@ public final class SpellData {
   private static void putSpell(Spell spell) {
     spellMap.put(spell.getId(), spell);
   }
-  //items.json dosyasi ile spell dataya spell verileri eklenecek
 }

@@ -37,6 +37,7 @@ public class Creature extends Entity {
   BattleLog battleLog = DummyBattleLog.getInstance();
   private Item weapon;
   private Location location;
+  private boolean frozen = false;
 
   /**
    * What caused the death of this creature. If getHealth().isAlive() evaluates to true, this should be null.
@@ -298,6 +299,14 @@ public class Creature extends Entity {
       }
     }
     return visible;
+  }
+
+  public boolean isFrozen() {
+    return frozen;
+  }
+
+  public void changeFrozen() {
+    frozen = true;
   }
 
   public enum Tag {MILKABLE, CORPSE}
