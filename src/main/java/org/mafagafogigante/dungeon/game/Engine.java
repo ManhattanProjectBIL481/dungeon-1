@@ -123,19 +123,11 @@ public final class Engine {
       // Imagine if a third factor (such as hunger) could kill one of the creatures.
       // I think it still makes sense to say that the survivor managed to kill the defeated, but that's just me.
       writeDrops(defeated);
-      if (hero == survivor) {
-        PartOfDay partOfDay = PartOfDay.getCorrespondingConstant(Game.getGameState().getWorld().getWorldDate());
-        Game.getGameState().getStatistics().getBattleStatistics().addBattle(foe, defeated.getCauseOfDeath(), partOfDay);
-        Game.getGameState().getStatistics().getExplorationStatistics().addKill(hero.getLocation().getPoint());
-        long heroTakenDamage = hero.getBattleLog().getAndResetTaken();
-        long heroInflictedDamage = hero.getBattleLog().getAndResetInflicted();
-        Game.getGameState().getStatistics().getHeroStatistics().incrementDamageTaken(heroTakenDamage);
-        Game.getGameState().getStatistics().getHeroStatistics().incrementDamageInflicted(heroInflictedDamage);
-      }
     } else {
       Writer.write(new DungeonString("You cannot open this creature."));
     }
   }
+
 
   /**
    * Simulates a battle between the hero and a creature.

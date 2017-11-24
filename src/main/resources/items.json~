@@ -1,6 +1,32 @@
 {
   "items": [
     {
+      "id": "MAGIC_MUSHROOM",
+      "type": "Food",
+      "name": {
+        "singular": "Magic Mushroom"
+      },
+      "rarity": "UNCOMMON",
+      "tags": [
+        "WEAPON",
+        "FOOD",
+        "DECOMPOSES",
+        "WEIGHT_PROPORTIONAL_TO_INTEGRITY"
+      ],
+      "integrity": {
+        "current": 50,
+        "maximum": 50
+      },
+      "weight": 0.01,
+      "visibility": "60.00%",
+      "decompositionPeriod": "1 day",
+      "damage": 6,
+      "hitRate": "70.00%",
+      "integrityDecrementOnHit": 4,
+      "nutrition": 8,
+      "integrityDecrementOnEat": 6
+    },
+    {
       "id": "TORCH",
       "type": "Tool",
       "name": {
@@ -232,6 +258,37 @@
         [
           "HEALING",
           10
+        ]
+      ],
+      "integrityDecrementPerDose": 5
+    },
+    {                  
+      "id": "WAMPIRE_POTION",
+      "type": "Potion",
+      "name": {
+        "singular": "Wampire Potion"
+      },
+      "rarity": "COMMON",
+      "tags": [
+        "WEAPON",
+        "DRINKABLE",
+        "WEIGHT_PROPORTIONAL_TO_INTEGRITY"
+      ],
+      "integrity": {
+        "current": 10,
+        "maximum": 10
+      },
+      "weight": 0.2,
+      "visibility": "100.00%",
+      "damage": 4,
+      "hitRate": "50.00%",
+      "integrityDecrementOnHit": 5,
+      "drinkableDoses": 1,
+      "drinkableEffects": [
+        [
+          "LIFE_STEAL",
+          0.5,
+          "1 hour"
         ]
       ],
       "integrityDecrementPerDose": 5

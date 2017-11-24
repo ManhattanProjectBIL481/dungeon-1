@@ -112,14 +112,11 @@ public final class Engine {
     if (foe.getId().equals(new Id("CHEST"))) {
       Writer.write(new DungeonString("You opened the chest."));
       while (hero.getHealth().isAlive() && foe.getHealth().isAlive()) {
-        hero.hit(foe);
+        hero.open(foe);
         Engine.rollDateAndRefresh(BATTLE_TURN_DURATION);
         // No contract specifies that calling hit on the Hero will not kill it, so check both creatures again.
         // Additionally, rolling the date forward may kill the hero in the future.
-        if (hero.getHealth().isAlive() && foe.getHealth().isAlive()) {
-          foe.hit(hero);
-          Engine.rollDateAndRefresh(BATTLE_TURN_DURATION);
-        }
+       
       }
       Creature survivor = hero.getHealth().isAlive() ? hero : foe;
       Creature defeated = (survivor == hero) ? foe : hero;

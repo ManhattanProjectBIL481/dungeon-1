@@ -269,6 +269,10 @@ public class Hero extends Creature {
   public void attackTarget(String[] arguments) {
     Creature target = selectTarget(arguments);
     if (target != null) {
+      if (target.getId().equals(new Id("CHEST"))) {
+        Writer.write("You can not attack chest.");
+        return;
+      }
       Engine.battle(this, target);
     }
   }

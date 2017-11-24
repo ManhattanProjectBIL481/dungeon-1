@@ -14,8 +14,8 @@
         "WEIGHT_PROPORTIONAL_TO_INTEGRITY"
       ],
       "integrity": {
-        "current": 50,
-        "maximum": 50
+        "current": 6,
+        "maximum": 6
       },
       "weight": 0.01,
       "visibility": "60.00%",
@@ -23,7 +23,7 @@
       "damage": 6,
       "hitRate": "70.00%",
       "integrityDecrementOnHit": 4,
-      "nutrition": 8,
+      "nutrition": 50,
       "integrityDecrementOnEat": 6
     },
     {
