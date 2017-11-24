@@ -84,7 +84,7 @@ public class Hero extends Creature {
   private boolean hasSword = false;
   private boolean hasSpear = false;
   private boolean hasAxe = false;
-  public int itemCounter = 0;
+  private int itemCounter = 0;
 
   Hero(CreaturePreset preset, Statistics statistics, Date dateOfBirth) {
     super(preset);
@@ -382,19 +382,34 @@ public class Hero extends Creature {
       getInventory().addItem(item);
       Writer.write(String.format("Added %s to the inventory.", item.getQualifiedName()));
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+        if (!getHealth().isFull()) {
+          getHealth().incrementBy(4);
+        }
         hasSword = true;
         hasWeapon = true;
         itemCounter++;
+        String s = "You've been picked an mysterious item which makes";
+        Writer.write(String.format("%s increment your base damage and health 4.", s));
       }
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Spear")) {
+        if (!getHealth().isFull()) {
+          getHealth().incrementBy(4);
+        }
         hasSpear = true;
         hasWeapon = true;
         itemCounter++;
+        String s = "You've been picked an mysterious item which makes";
+        Writer.write(String.format("%s increment your base damage and health 4.", s));
       }
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
+        if (!getHealth().isFull()) {
+          getHealth().incrementBy(4);
+        }
         hasAxe = true;
         hasWeapon = true;
         itemCounter++;
+        String s = "You've been picked an mysterious item which makes";
+        Writer.write(String.format("%s increment your base damage and health 4.", s));
       }
     } else {
       throw new IllegalStateException("simulateItemAddition did not return SUCCESSFUL.");
@@ -422,25 +437,34 @@ public class Hero extends Creature {
     List<Item> selectedItems = selectInventoryItems(arguments);
     for (Item item : selectedItems) {
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+        getHealth().decrementBy(4);
         hasSword = false;
         itemCounter--;
         if (itemCounter == 0) {
           hasWeapon = false;
         }
+        String s = "You've been dropped an mysterious item which makes";
+        Writer.write(String.format("%s decrement your base damage and health 4.", s));
       }
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Spear")) {
+        getHealth().decrementBy(4);
         hasSpear = false;
         itemCounter--;
         if (itemCounter == 0) {
           hasWeapon = false;
         }
+        String s = "You've been dropped an mysterious item which makes";
+        Writer.write(String.format("%s decrement your base damage and health 4.", s));
       }
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
+        getHealth().decrementBy(4);
         hasAxe = true;
         itemCounter--;
         if (itemCounter == 0) {
           hasWeapon = false;
         }
+        String s = "You've been dropped an mysterious item which makes";
+        Writer.write(String.format("%s decrement your base damage and health 4.", s));
       }
       if (item == getWeapon()) {
         unsetWeapon(); // Just unset the weapon, it does not need to be moved to the inventory before being dropped.
@@ -501,6 +525,10 @@ public class Hero extends Creature {
    */
   public void eatItem(String[] arguments) {
     Item selectedItem = selectInventoryItem(arguments);
+    if (getHealth().isFull()) {
+      Writer.write("You're fully healthy you can't eat an item");
+      return;
+    }
     if (selectedItem != null) {
       if (selectedItem.hasTag(Item.Tag.FOOD)) {
         Engine.rollDateAndRefresh(SECONDS_TO_EAT_AN_ITEM);
