@@ -26,8 +26,31 @@ public final class SpellData {
   private static final Map<Id, Spell> spellMap = new HashMap<>();
 
   static {
-    putSpell(new Spell("ECY", "Allah Kahretsin") {
+    putSpell(new Spell("ECY", "Frostbolt") {
+      private static final int SECONDS_TO_CAST_ECY = 25;
       public void operate(Hero hero, String[] targetMatcher) {
+        if (targetMatcher.length == 0) {
+          Writer.write("Provide a target.");
+        } else {
+          Creature target = hero.findCreature(targetMatcher);
+          if (target != null) {
+            Engine.rollDateAndRefresh(SECONDS_TO_CAST_ECY);
+            DungeonString string = new DungeonString();
+            string.append("You casted ");
+            string.append(getName().getSingular());
+            string.append(" on ");
+            string.append(target.getName().getSingular());
+            string.append(".");
+            target.getHealth().decrementBy(target.getHealth().getCurrent());
+            if (target.getHealth().isDead()) {
+              string.append("\nAnd it died.");
+              target.setCauseOfDeath(new CauseOfDeath(TypeOfCauseOfDeath.SPELL, new Id("ECY")));
+            } else {
+              string.append("\nBut it is still alive.");
+            }
+            Writer.write(string);
+          }
+        }
       }
     });
     putSpell(new Spell("HEAL", "Heal") {
