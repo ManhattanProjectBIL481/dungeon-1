@@ -49,7 +49,7 @@ abstract class Condition implements Serializable {
   }
 
   int stealingAttack(int stealing) {
-    return stealing;
+    return 0;
   } 
 
 }

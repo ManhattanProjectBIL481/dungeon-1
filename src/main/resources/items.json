@@ -283,12 +283,12 @@
       "damage": 4,
       "hitRate": "50.00%",
       "integrityDecrementOnHit": 5,
-      "drinkableDoses": 1,
+      "drinkableDoses": 5,
       "drinkableEffects": [
         [
           "LIFE_STEAL",
           0.5,
-          "1 hour"
+          "3 hour"
         ]
       ],
       "integrityDecrementPerDose": 5
