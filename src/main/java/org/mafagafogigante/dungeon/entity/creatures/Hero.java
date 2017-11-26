@@ -350,6 +350,18 @@ public class Hero extends Creature {
     if (canSeeAnItem()) {
       List<Item> selectedItems = selectLocationItems(arguments);
       for (Item item : selectedItems) {
+        if (hasSword && item.getQualifiedName().equalsIgnoreCase("Mysterious Sword")) {
+          Writer.write("You can't get Mysterious Sword one more time");
+          return;
+        }
+        if (hasSpear && item.getQualifiedName().equalsIgnoreCase("Mysterious Spear")) {
+          Writer.write("You can't get Mysterious Spear one more time");
+          return;
+        }
+        if (hasAxe && item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
+          Writer.write("You can't get Mysterious Axe one more time");
+          return;
+        }
         final SimulationResult result = getInventory().simulateItemAddition(item);
         // We stop adding items as soon as we hit the first one which would exceed the amount or weight limit.
         if (result == SimulationResult.AMOUNT_LIMIT) {
