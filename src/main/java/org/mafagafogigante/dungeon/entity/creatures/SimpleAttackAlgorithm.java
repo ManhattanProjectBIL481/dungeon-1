@@ -69,7 +69,7 @@ class SimpleAttackAlgorithm implements AttackAlgorithm {
       int lifesteal = 0;
       DamageHandler.inflictDamage(attacker, defender, damage);
       for (Condition condition : attacker.getConditions()) { // ebyildirim
-        lifesteal = condition.stealingAttack(damage);
+        lifesteal += condition.stealingAttack(damage);
       }
       attacker.getHealth().incrementBy(lifesteal);
       AttackAlgorithmWriter.writeInflictedDamage(attacker, damage, defender, isCriticalHit);
