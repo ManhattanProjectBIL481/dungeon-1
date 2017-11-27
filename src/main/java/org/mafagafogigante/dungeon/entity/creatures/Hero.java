@@ -474,7 +474,7 @@ public class Hero extends Creature {
       }
       if (item.getQualifiedName().equalsIgnoreCase("Mysterious Axe")) {
         getHealth().decrementBy(4);
-        hasAxe = true;
+        hasAxe = false;
         itemCounter--;
         if (itemCounter == 0) {
           hasWeapon = false;
